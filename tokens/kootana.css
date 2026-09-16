@@ -1,0 +1,101 @@
+/* Kootana design tokens — CSS custom properties for the landing page.
+   Same names as tokens/kootana.tailwind.js. Dark is the default scheme. */
+
+:root {
+  /* raw ramps (token definitions only — components use semantic names) */
+  --k-paper: #FFFCF0; --k-black: #100F0F;
+  --k-base-50: #F2F0E5; --k-base-100: #E6E4D9; --k-base-150: #DAD8CE; --k-base-200: #CECDC3; --k-base-300: #B7B5AC;
+  --k-base-400: #9F9D96; --k-base-500: #878580; --k-base-600: #6F6E69; --k-base-700: #575653; --k-base-800: #403E3C;
+  --k-base-850: #343331; --k-base-900: #282726; --k-base-950: #1C1B1A;
+  --k-magenta-50: #FEE4E5; --k-magenta-100: #FCCFDA; --k-magenta-150: #F9B9CF; --k-magenta-200: #F4A4C2; --k-magenta-300: #E47DA8;
+  --k-magenta-400: #CE5D97; --k-magenta-500: #B74583; --k-magenta-600: #A02F6F; --k-magenta-700: #87285E; --k-magenta-800: #641F46;
+  --k-magenta-850: #4F1B39; --k-magenta-900: #39172B; --k-magenta-950: #24131D;
+  --k-purple-50: #F0EAEC; --k-purple-100: #E2D9E9; --k-purple-150: #D3CAE6; --k-purple-200: #C4B9E0; --k-purple-300: #A699D0;
+  --k-purple-400: #8B7EC8; --k-purple-500: #735EB5; --k-purple-600: #5E409D; --k-purple-700: #4F3685; --k-purple-800: #3C2A62;
+  --k-purple-850: #31234E; --k-purple-900: #261C39; --k-purple-950: #1A1623;
+
+  /* type */
+  --k-font-display: 'Sora', 'Public Sans', system-ui, sans-serif;
+  --k-font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --k-font-mono: 'Source Code Pro', ui-monospace, monospace;
+  --k-text-display: 700 40px/44px var(--k-font-display); --k-track-display: -0.02em;
+  --k-text-title-1: 700 32px/38px var(--k-font-display); --k-track-title-1: -0.015em;
+  --k-text-title-2: 700 24px/30px var(--k-font-display); --k-track-title-2: -0.01em;
+  --k-text-heading: 600 20px/26px var(--k-font-sans);   --k-track-heading: -0.005em;
+  --k-text-body-lg: 400 18px/28px var(--k-font-sans);
+  --k-text-body: 400 17px/26px var(--k-font-sans);
+  --k-text-body-sm: 400 15px/22px var(--k-font-sans);
+  --k-text-label: 600 15px/20px var(--k-font-sans);
+  --k-text-button: 600 17px/24px var(--k-font-sans);
+  --k-text-caption: 500 13px/18px var(--k-font-sans);   --k-track-caption: 0.01em;
+  --k-text-overline: 600 12px/16px var(--k-font-sans);  --k-track-overline: 0.06em;
+
+  /* space (4pt) */
+  --k-space-0-5: 2px; --k-space-1: 4px; --k-space-2: 8px; --k-space-3: 12px; --k-space-4: 16px; --k-space-5: 20px;
+  --k-space-6: 24px; --k-space-7: 28px; --k-space-8: 32px; --k-space-10: 40px; --k-space-12: 48px; --k-space-16: 64px;
+  --k-space-20: 80px; --k-space-24: 96px;
+
+  /* radius, border */
+  --k-radius-xs: 4px; --k-radius-sm: 8px; --k-radius-md: 12px; --k-radius-lg: 16px; --k-radius-xl: 24px; --k-radius-full: 9999px;
+  --k-border-1: 1px; --k-border-2: 2px; --k-border-3: 3px;
+
+  /* z-index */
+  --k-z-base: 0; --k-z-raised: 10; --k-z-sticky: 100; --k-z-header: 200; --k-z-overlay: 1000; --k-z-sheet: 1100; --k-z-toast: 1200;
+
+  /* motion */
+  --k-dur-fast: 120ms; --k-dur-base: 200ms; --k-dur-slow: 320ms; --k-dur-signature: 640ms;
+  --k-ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --k-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --k-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* layout (landing) */
+  --k-page-max: 1200px; --k-page-margin: clamp(24px, 5vw, 64px); --k-gutter: 24px; --k-measure: 68ch;
+
+  /* semantic — dark (default) */
+  color-scheme: dark;
+  --k-bg: var(--k-base-950); --k-bg-elevated: var(--k-base-900);
+  --k-surface: var(--k-base-850); --k-surface-hover: var(--k-base-800);
+  --k-border: var(--k-base-800); --k-border-strong: var(--k-base-700);
+  --k-text: var(--k-paper); --k-text-muted: var(--k-base-500); --k-text-faint: var(--k-base-700);
+  --k-accent: var(--k-magenta-400); --k-accent-hover: var(--k-magenta-300); --k-accent-pressed: var(--k-magenta-500);
+  --k-accent-fg: var(--k-black); --k-accent-subtle: var(--k-magenta-900); --k-accent-subtle-fg: var(--k-magenta-200);
+  --k-secondary: var(--k-purple-400); --k-secondary-subtle: var(--k-purple-900);
+  --k-success: #879A39; --k-success-subtle: #252D09;
+  --k-warning: #D0A215; --k-warning-subtle: #3A2D04;
+  --k-danger: #E8705F; --k-danger-subtle: #3E1715;
+  --k-info: var(--k-purple-400); --k-info-subtle: var(--k-purple-900);
+  --k-here: var(--k-magenta-400); --k-connected: #879A39; --k-pending: #D0A215; --k-verified: var(--k-purple-400); --k-away: var(--k-base-500);
+  --k-focus: var(--k-magenta-300);
+  --k-shadow-sm: none; --k-shadow-md: none; --k-shadow-lg: none; /* dark: depth via lightness + border */
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --k-bg: var(--k-paper); --k-bg-elevated: var(--k-base-50);
+  --k-surface: var(--k-base-100); --k-surface-hover: var(--k-base-150);
+  --k-border: var(--k-base-200); --k-border-strong: var(--k-base-300);
+  --k-text: var(--k-black); --k-text-muted: var(--k-base-600); --k-text-faint: var(--k-base-300);
+  --k-accent: var(--k-magenta-600); --k-accent-hover: var(--k-magenta-700); --k-accent-pressed: var(--k-magenta-800);
+  --k-accent-fg: var(--k-paper); --k-accent-subtle: var(--k-magenta-50); --k-accent-subtle-fg: var(--k-magenta-700);
+  --k-secondary: var(--k-purple-600); --k-secondary-subtle: var(--k-purple-50);
+  --k-success: #536907; --k-success-subtle: #EDEECF;
+  --k-warning: #8E6B01; --k-warning-subtle: #FAEEC6;
+  --k-danger: #AF3029; --k-danger-subtle: #FFE1D5;
+  --k-info: var(--k-purple-600); --k-info-subtle: var(--k-purple-50);
+  --k-here: var(--k-magenta-600); --k-connected: #536907; --k-pending: #8E6B01; --k-verified: var(--k-purple-600); --k-away: var(--k-base-500);
+  --k-focus: var(--k-magenta-500);
+  --k-shadow-sm: 0 1px 2px rgba(16,15,15,0.08);
+  --k-shadow-md: 0 4px 8px rgba(16,15,15,0.10);
+  --k-shadow-lg: 0 8px 16px rgba(16,15,15,0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --k-dur-fast: 0ms; --k-dur-base: 0ms; --k-dur-slow: 0ms; --k-dur-signature: 200ms; }
+}
+
+/* base */
+html { font-size: 106.25%; } /* 17px root, family standard */
+body { background: var(--k-bg); color: var(--k-text); font: var(--k-text-body); margin: 0; }
+a { color: var(--k-accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--k-accent-hover); }
+:focus-visible { outline: var(--k-border-2) solid var(--k-focus); outline-offset: 2px; }
