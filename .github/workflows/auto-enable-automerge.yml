@@ -1,0 +1,35 @@
+name: Auto-enable auto-merge on new PRs
+
+# Flip GitHub's native auto-merge on for every non-draft PR targeting main.
+# This closes the most common failure mode in our PR flow: someone (or an
+# automated agent) opens a PR but forgets to run `gh pr merge --auto --squash`,
+# leaving it sitting green forever.
+
+on:
+  pull_request:
+    types:
+      - opened # new PR
+      - ready_for_review # draft marked ready
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  enable-auto-merge:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.pull_request.draft == false &&
+      github.event.pull_request.base.ref == 'main'
+    steps:
+      - name: Enable auto-merge
+        env:
+          # Same PAT the auto-update-prs workflow uses. Using GITHUB_TOKEN
+          # works for enabling auto-merge, but we reuse AUTO_UPDATE_PAT so
+          # the eventual merge commit is PAT-authored and not suppressed
+          # from triggering downstream workflow events.
+          GH_TOKEN: ${{ secrets.AUTO_UPDATE_PAT }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh pr merge "$PR_NUMBER" --repo "$REPO" --auto --squash
