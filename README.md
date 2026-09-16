@@ -25,10 +25,12 @@ and a verifiable track record on the AT Protocol, a sibling to
 
 ## Status
 
-Not scaffolded yet. The site framework, design system, and CI will be added when
-landing-page work begins, once the Kootana logo + styleguide land from the design
-brief. Tokens will mirror the app's `src/constants/theme.ts` (shared Flexoki
-foundation, magenta accent placeholder).
+Not scaffolded yet. The site framework and CI will be added when landing-page work
+begins. The brand is ready: `tokens/kootana.css` holds the design tokens (CSS custom
+properties, dark default + `[data-theme="light"]`), the same names as the app's
+`src/constants/theme.ts` (Flexoki foundation, Flexoki Magenta accent, Sora display /
+Public Sans body / Source Code Pro mono). Logo and icon assets live in the workspace
+brand folder.
 
 ---
 
