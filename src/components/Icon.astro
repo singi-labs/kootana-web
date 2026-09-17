@@ -1,0 +1,24 @@
+---
+import { icons } from '../icons';
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 24, class: className } = Astro.props;
+const path = icons[name] ?? '';
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 256 256"
+  width={size}
+  height={size}
+  fill="currentColor"
+  class={className}
+  aria-hidden="true"
+>
+  <path d={path}></path>
+</svg>

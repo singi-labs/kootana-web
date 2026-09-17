@@ -1,0 +1,254 @@
+---
+// Waitlist form -> Netlify function -> self-hosted Listmonk (double opt-in),
+// with ALTCHA proof-of-work spam protection. Ported from the gui.do pattern.
+const LIST_ID = 8; // Kootana waitlist (Listmonk)
+const actionUrl = '/.netlify/functions/newsletter-subscribe';
+const altchaChallengeUrl = '/.netlify/functions/altcha-challenge';
+---
+
+<section id="waitlist" class="waitlist" aria-labelledby="waitlist-heading">
+  <div class="container waitlist-card">
+    <p class="eyebrow">Waitlist</p>
+    <h2 id="waitlist-heading" class="waitlist-title">Be there at launch.</h2>
+    <p class="waitlist-sub">
+      Kootana is in early development. Leave your email and we'll let you know
+      the moment it's ready. You'll get a confirmation email first.
+    </p>
+
+    <form id="waitlist-form" class="waitlist-form" method="post" action={actionUrl} novalidate>
+      <input type="hidden" name="l" value={LIST_ID} />
+      <input type="hidden" name="signupPage" value="/" />
+
+      <div class="field-row">
+        <label class="email-field">
+          <span class="sr-only">Email address</span>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="you@email.com"
+            autocomplete="email"
+            aria-describedby="waitlist-status"
+          />
+        </label>
+        <button type="submit" class="btn btn-primary">Join the waitlist</button>
+      </div>
+
+      <div class="altcha-container" role="group" aria-label="Spam verification">
+        <span id="altcha-desc" class="sr-only">
+          Complete the verification to prove you're human.
+        </span>
+        <altcha-widget
+          challengeurl={altchaChallengeUrl}
+          hidefooter
+          hidelogo
+          aria-describedby="altcha-desc"></altcha-widget>
+      </div>
+
+      <p id="waitlist-status" class="waitlist-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="waitlist-trust">
+      No spam. No tracking. Unsubscribe in one click. Prefer Bluesky?
+      <a href="https://bsky.app/profile/kootana.social" rel="me noopener" target="_blank">
+        Follow @kootana.social
+      </a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .waitlist {
+    padding-block: clamp(48px, 8vw, 96px);
+    border-top: 1px solid var(--k-border);
+  }
+
+  .waitlist-card {
+    max-width: 720px;
+  }
+
+  .waitlist-title {
+    margin-top: 12px;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+  }
+
+  .waitlist-sub {
+    margin-top: 12px;
+    max-width: 52ch;
+    color: var(--k-text-muted);
+  }
+
+  .waitlist-form {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .field-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .email-field {
+    flex: 1 1 260px;
+  }
+
+  .email-field input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 18px;
+    font-size: 17px;
+    font-family: var(--k-font-sans);
+    color: var(--k-text);
+    background: var(--k-surface);
+    border: 1.5px solid var(--k-border);
+    border-radius: var(--k-radius-full);
+  }
+
+  .email-field input::placeholder {
+    color: var(--k-text-muted);
+  }
+
+  .email-field input[aria-invalid='true'] {
+    border-color: #e8705f;
+  }
+
+  .waitlist-status:empty {
+    display: none;
+  }
+
+  .waitlist-status {
+    font-size: 15px;
+    color: var(--k-text-muted);
+  }
+
+  .waitlist-status[data-type='success'] {
+    color: var(--k-success);
+    font-weight: 600;
+  }
+
+  .waitlist-status[data-type='error'] {
+    color: #e8705f;
+    font-weight: 600;
+  }
+
+  .waitlist-trust {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--k-text-muted);
+  }
+
+  .waitlist-trust a {
+    color: var(--k-accent);
+    font-weight: 600;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  :global(altcha-widget) {
+    --altcha-max-width: 100%;
+    --altcha-border-width: 1px;
+    --altcha-border-radius: 12px;
+    --altcha-color-border: var(--k-border);
+    --altcha-color-base: var(--k-surface);
+    --altcha-color-text: var(--k-text);
+    --altcha-color-active: var(--k-accent);
+  }
+</style>
+
+<script>
+  function loadAltcha() {
+    if (document.querySelector('script[data-altcha]')) return;
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/altcha/dist/altcha.min.js';
+    s.type = 'module';
+    s.async = true;
+    s.dataset.altcha = 'true';
+    document.head.appendChild(s);
+  }
+
+  function initWaitlist() {
+    const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
+    if (!form || form.dataset.ready) return;
+    form.dataset.ready = 'true';
+
+    const status = document.getElementById('waitlist-status') as HTMLElement;
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function setStatus(message: string, type: '' | 'success' | 'error' | 'loading') {
+      status.textContent = message;
+      if (type) status.dataset.type = type;
+      else delete status.dataset.type;
+    }
+
+    emailInput.addEventListener('input', () => {
+      emailInput.setAttribute(
+        'aria-invalid',
+        (!emailRe.test(emailInput.value) && emailInput.value.length > 0).toString(),
+      );
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!emailRe.test(emailInput.value)) {
+        setStatus('Please enter a valid email address.', 'error');
+        emailInput.focus();
+        return;
+      }
+
+      const altchaInput = form.querySelector('input[name="altcha"]') as HTMLInputElement | null;
+      const altcha = altchaInput?.value;
+      if (!altcha) {
+        setStatus('Please wait for the verification to finish, then try again.', 'error');
+        return;
+      }
+
+      button.disabled = true;
+      setStatus('Adding you to the list…', 'loading');
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: emailInput.value,
+            listId: (form.querySelector('input[name="l"]') as HTMLInputElement)?.value,
+            signupPage: (form.querySelector('input[name="signupPage"]') as HTMLInputElement)?.value,
+            altcha,
+          }),
+        });
+        const result = await res.json();
+
+        if (res.ok && result.success) {
+          setStatus(result.message || 'Thanks! Check your email to confirm.', 'success');
+          form.reset();
+        } else {
+          setStatus(result.error || 'Something went wrong. Please try again.', 'error');
+        }
+      } catch {
+        setStatus('Something went wrong. Please try again.', 'error');
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+
+  loadAltcha();
+  document.addEventListener('DOMContentLoaded', initWaitlist);
+  initWaitlist();
+</script>

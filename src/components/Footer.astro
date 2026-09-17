@@ -1,0 +1,64 @@
+---
+const year = 2026;
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/kootana-symbol.svg" alt="" width="28" height="28" />
+      <span>Kootana</span>
+    </div>
+
+    <nav class="footer-links" aria-label="Footer">
+      <a href="https://bsky.app/profile/kootana.social" rel="me noopener" target="_blank">Bluesky</a>
+      <a href="https://singi.dev" rel="noopener" target="_blank">Singi Labs</a>
+      <a href="https://sifa.id" rel="noopener" target="_blank">Sifa</a>
+    </nav>
+
+    <p class="footer-note">A Singi Labs product. © {year} Singi Labs.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: 40px;
+    border-top: 1px solid var(--k-border);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 32px;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--k-font-display);
+    font-weight: 700;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-links a {
+    color: var(--k-text-muted);
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  .footer-links a:hover {
+    color: var(--k-accent);
+  }
+
+  .footer-note {
+    margin-left: auto;
+    font-size: 14px;
+    color: var(--k-text-faint);
+  }
+</style>

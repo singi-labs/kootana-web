@@ -1,0 +1,56 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section class="trust" aria-labelledby="trust-heading">
+  <div class="container trust-inner">
+    <span class="trust-icon">
+      <Icon name="seal-check" size={28} />
+    </span>
+    <div>
+      <h2 id="trust-heading" class="trust-title">Portable, open, yours.</h2>
+      <p class="trust-body">
+        Kootana is built on open protocols. Your identity and your connections
+        belong to you: they work across apps, and they come with you if you ever
+        leave. It feels as easy as anything you already use, without the walled
+        garden underneath.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust {
+    padding-block: clamp(48px, 8vw, 88px);
+    border-top: 1px solid var(--k-border);
+  }
+
+  .trust-inner {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    max-width: 800px;
+  }
+
+  .trust-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--k-radius-md);
+    background: var(--k-accent-subtle);
+    color: var(--k-accent);
+  }
+
+  .trust-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  }
+
+  .trust-body {
+    margin-top: 12px;
+    font-size: 1.1rem;
+    color: var(--k-text-muted);
+  }
+</style>
