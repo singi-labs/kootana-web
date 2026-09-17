@@ -1,0 +1,94 @@
+---
+import Icon from './Icon.astro';
+
+const steps = [
+  {
+    icon: 'users-three',
+    title: "See who's here",
+    body: "Walk into a room and see the people you already follow, plus the ones worth meeting. Your Bluesky graph comes with you from the first event.",
+  },
+  {
+    icon: 'scan',
+    title: 'Connect in a tap',
+    body: 'Scan to connect. No typing handles, no fumbling for a business card, no app-store detour for the person across the table.',
+  },
+  {
+    icon: 'graph',
+    title: 'Keep the thread',
+    body: 'Every person you meet and every event you attend builds a track record that stays with you, across events and across apps.',
+  },
+];
+---
+
+<section class="how" aria-labelledby="how-heading">
+  <div class="container">
+    <p class="eyebrow">How it works</p>
+    <h2 id="how-heading" class="how-title">
+      One network that follows you from event to event.
+    </h2>
+
+    <ol class="steps">
+      {
+        steps.map((step) => (
+          <li class="step">
+            <span class="step-icon">
+              <Icon name={step.icon} size={26} />
+            </span>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-body">{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how {
+    padding-block: clamp(48px, 8vw, 96px);
+    border-top: 1px solid var(--k-border);
+  }
+
+  .how-title {
+    margin-top: 12px;
+    max-width: 20ch;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+  }
+
+  .steps {
+    list-style: none;
+    margin: clamp(32px, 5vw, 56px) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .step {
+    padding: 28px;
+    background: var(--k-bg-elevated);
+    border: 1px solid var(--k-border);
+    border-radius: var(--k-radius-lg);
+  }
+
+  .step-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--k-radius-md);
+    background: var(--k-accent-subtle);
+    color: var(--k-accent);
+  }
+
+  .step-title {
+    margin-top: 20px;
+    font-size: 1.3rem;
+  }
+
+  .step-body {
+    margin-top: 10px;
+    color: var(--k-text-muted);
+  }
+</style>
