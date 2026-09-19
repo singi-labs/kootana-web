@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glowTR" cx="88%" cy="8%" r="70%">
+      <stop offset="0%" stop-color="#CE5D97" stop-opacity="0.16"/>
+      <stop offset="55%" stop-color="#CE5D97" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowBL" cx="6%" cy="98%" r="70%">
+      <stop offset="0%" stop-color="#8B7EC8" stop-opacity="0.16"/>
+      <stop offset="55%" stop-color="#8B7EC8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#1C1B1A"/>
+  <rect width="1200" height="630" fill="url(#glowTR)"/>
+  <rect width="1200" height="630" fill="url(#glowBL)"/>
+  <g transform="translate(88,96) scale(0.12018) translate(-170,-169)"><path transform="matrix(1.333332,0,0,1.333332,150.333332,148.333332)" fill-rule="evenodd" d="M128,71.5C159.183,71.5 184.5,96.817 184.5,128C184.5,159.183 159.183,184.5 128,184.5C96.817,184.5 71.5,159.183 71.5,128C71.5,96.817 96.817,71.5 128,71.5ZM128,104.5C115.03,104.5 104.5,115.03 104.5,128C104.5,140.97 115.03,151.5 128,151.5C140.97,151.5 151.5,140.97 151.5,128C151.5,115.03 140.97,104.5 128,104.5Z" fill="#CE5D97"/><path transform="matrix(1.333332,0,0,1.333332,150.333332,148.333332)" fill-rule="evenodd" d="M174.866,194.259C182.45,189.218 192.7,191.282 197.741,198.866C202.782,206.45 200.718,216.7 193.134,221.741C175.432,233.507 150.846,240.5 128,240.5C66.284,240.5 15.5,189.716 15.5,128C15.5,66.284 66.284,15.5 128,15.5C189.716,15.5 240.5,66.284 240.5,128C240.5,160.538 225.46,184.5 196,184.5C166.54,184.5 151.5,160.538 151.5,128L151.5,88C151.5,78.893 158.893,71.5 168,71.5C177.107,71.5 184.5,78.893 184.5,88L184.5,128C184.5,134.408 185.237,140.363 187.279,145.164C188.851,148.858 191.536,151.5 196,151.5C200.464,151.5 203.149,148.858 204.721,145.164C206.763,140.363 207.5,134.408 207.5,128C207.5,84.388 171.612,48.5 128,48.5C84.388,48.5 48.5,84.388 48.5,128C48.5,171.612 84.388,207.5 128,207.5C144.415,207.5 162.148,202.713 174.866,194.259Z" fill="#CE5D97"/><polygon points="620.6 403.4 673.5 206.0 818.0 350.5" fill="none" stroke="#FFFCF0" stroke-width="56" stroke-linejoin="round"/><polygon points="403.4 620.6 350.5 818.0 206.0 673.5" fill="none" stroke="#FFFCF0" stroke-width="56" stroke-linejoin="round"/><circle cx="704" cy="704" r="92" fill="none" stroke="#8B7EC8" stroke-width="40"/><circle cx="704" cy="704" r="30" fill="#8B7EC8"/></g>
+  <text x="200" y="151" font-family="Sora" font-weight="700" font-size="54" fill="#FFFCF0">Kootana</text>
+  <text x="84" y="320" font-family="Sora" font-weight="700" font-size="90" fill="#FFFCF0" letter-spacing="-2.5">Your network, at every</text>
+  <text x="84" y="424" font-family="Sora" font-weight="700" font-size="90" fill="#FFFCF0" letter-spacing="-2.5">event.</text>
+  <circle cx="94" cy="525" r="6.5" fill="#CE5D97"/>
+  <text x="112" y="533" font-family="Sora" font-weight="600" font-size="26" fill="#CE5D97" xml:space="preserve">kootana.social<tspan fill="#87857F">   ·   A Singi Labs product</tspan></text>
+</svg>
