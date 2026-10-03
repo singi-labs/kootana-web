@@ -1,0 +1,12 @@
+{
+  "client_id": "https://kootana.social/oauth/client-metadata.json",
+  "client_name": "Kootana by Sifa",
+  "client_uri": "https://kootana.social",
+  "application_type": "native",
+  "response_types": ["code"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "scope": "atproto transition:generic",
+  "redirect_uris": ["social.kootana:/auth/callback"],
+  "dpop_bound_access_tokens": true,
+  "token_endpoint_auth_method": "none"
+}
